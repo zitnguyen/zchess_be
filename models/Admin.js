@@ -1,7 +1,8 @@
+const mongoose = require("mongoose");
 const User = require("./User");
-const monogoose = require("mongoose");
-const adminSchema = new monogoose.Schema({
-  adminLevel: { type: String, required: true },
-});
+
+const adminSchema = new mongoose.Schema({});
+
 const Admin = User.discriminator("Admin", adminSchema);
+
 module.exports = Admin;

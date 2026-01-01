@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const Admin = require("../models/Admin");
 const Teacher = require("../models/Teacher");
-const Parent = require("../models/Parent");
+const Parent = require("../models/Parents");
 // lấy all user
 exports.getAllUsers = async (req, res) => {
   try {
