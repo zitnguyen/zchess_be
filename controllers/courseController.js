@@ -10,10 +10,10 @@ exports.getAllCourses = async (req, res) => {
   }
 };
 
-// Lấy course theo courseId
+// Lấy course theo _id
 exports.getCourseById = async (req, res) => {
   try {
-    const course = await Course.findOne({ courseId: req.params.id });
+    const course = await Course.findById(req.params.id);
     if (!course) return res.status(404).json({ message: "Course not found" });
     res.json(course);
   } catch (err) {
@@ -32,14 +32,12 @@ exports.createCourse = async (req, res) => {
   }
 };
 
-// Cập nhật course
+// Cập nhật course theo _id
 exports.updateCourse = async (req, res) => {
   try {
-    const course = await Course.findOneAndUpdate(
-      { courseId: req.params.id },
-      req.body,
-      { new: true }
-    );
+    const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!course) return res.status(404).json({ message: "Course not found" });
     res.json(course);
   } catch (err) {
@@ -47,10 +45,10 @@ exports.updateCourse = async (req, res) => {
   }
 };
 
-// Xóa course
+// Xóa course theo _id
 exports.deleteCourse = async (req, res) => {
   try {
-    const course = await Course.findOneAndDelete({ courseId: req.params.id });
+    const course = await Course.findByIdAndDelete(req.params.id);
     if (!course) return res.status(404).json({ message: "Course not found" });
     res.json({ message: "Course deleted" });
   } catch (err) {
