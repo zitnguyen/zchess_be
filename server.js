@@ -1,4 +1,4 @@
-require("dotenv").config(); // << load .env phải ở đầu
+require("dotenv").config(); // load .env phải ở đầu
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -6,10 +6,12 @@ const cors = require("cors");
 // import routes
 const userRoutes = require("./routes/userRoutes");
 const studentRoutes = require("./routes/studentRoutes");
+const courseRoutes = require("./routes/courseRoutes"); // thêm course
 const classRoutes = require("./routes/classRoutes");
 const enrollmentRoutes = require("./routes/enrollmentRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
-// import các routes khác như assignment, submission, payment…
+const revenueRoutes = require("./routes/revenueRoutes"); // thêm revenue
+const expenseRoutes = require("./routes/expenseRoutes"); // thêm expense
 
 const app = express();
 app.use(cors());
@@ -18,10 +20,12 @@ app.use(express.json());
 // map routes
 app.use("/api/users", userRoutes);
 app.use("/api/students", studentRoutes);
+app.use("/api/courses", courseRoutes);
 app.use("/api/classes", classRoutes);
 app.use("/api/enrollments", enrollmentRoutes);
 app.use("/api/attendance", attendanceRoutes);
-// map các route còn lại…
+app.use("/api/revenues", revenueRoutes);
+app.use("/api/expenses", expenseRoutes);
 
 // chạy server
 const PORT = process.env.PORT || 5000;
